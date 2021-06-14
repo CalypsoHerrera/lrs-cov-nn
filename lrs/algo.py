@@ -1,23 +1,19 @@
-import pprint
-import sys
-import os
-import math
-import random
-import time
+""" Low-Rank plus Sparse Decomposition of Covariance Matrices using
+Neural Network Parametrization
+Michel Baes, Calypso Herrera, Ariel Neufeld, Pierre Ruyssen
 
-import matplotlib.pyplot as plt
+https://arxiv.org/abs/1908.00461
+"""
+
+
 import numpy as np
-
 import torch
-
 from lrs import data
-
 
 def init_weights(m):
     if type(m) == torch.nn.Linear:
         torch.nn.init.xavier_uniform_(m.weight)
         m.bias.data.fill_(0.01)
-
 
 def algo(sigma, arg):
     i, j = np.tril_indices(arg['N'])
